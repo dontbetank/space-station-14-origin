@@ -3,6 +3,7 @@ using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 
 namespace Content.Server.Chemistry.Components;
 
@@ -16,8 +17,8 @@ public sealed class RehydratableComponent : Component
     /// <summary>
     /// The reagent that must be present to count as hydrated.
     /// </summary>
-    [DataField("catalyst", customTypeSerializer: typeof(PrototypeIdSerializer<ReagentPrototype>)), ViewVariables(VVAccess.ReadWrite)]
-    public string CatalystPrototype = "Water";
+    [DataField("catalyst", customTypeSerializer: typeof(PrototypeIdListSerializer<ReagentPrototype>)), ViewVariables(VVAccess.ReadWrite)]
+    public List<string> CatalystPrototypes = new(){"Water"};
 
     /// <summary>
     /// The minimum amount of catalyst that must be present to be hydrated.
